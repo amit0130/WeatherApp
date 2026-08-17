@@ -1,19 +1,39 @@
 apiVersion: apps/v1
 kind: Deployment
+
 metadata:
   name: weatherapp
+
 spec:
   replicas: 3
+
   selector:
     matchLabels:
       app: weatherapp
+
   template:
     metadata:
       labels:
         app: weatherapp
+
     spec:
       containers:
       - name: weatherapp
         image: amit30k/weatherapp:v1
+
         ports:
         - containerPort: 80
+
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 10
+
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 10
+          periodSeconds: 15
