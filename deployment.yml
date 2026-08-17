@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: weatherapp
-        image: amit30k/weatherapp:v1
+        image: amit30k/weatherapp:latest
 
         ports:
         - containerPort: 80
